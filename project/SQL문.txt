@@ -1,0 +1,16 @@
+create table mp3(
+num int(5) primary key auto_increment,
+title varchar(100),
+artist varchar(100),
+date varchar(15),
+genre varchar(100),
+views int(10)
+);
+
+alter table mp3 auto_increment=0;
+
+alter table mp3 modify column title varchar(100);
+alter table mp3 modify column artist varchar(100);
+alter table mp3 modify column genre varchar(100);
+ALTER DATABASE music DEFAULT CHARACTER SET utf8;
+ALTER table mp3 DEFAULT CHARACTER SET utf8;

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+#top{
+	margin-top: 50px;
+	width: 900px;
+	height: 100px;
+}
+#title{
+	position: absolute;
+	left: 475px;
+	width: 200px;
+	height: 100px;
+	background-image: url("images/Title.png");
+	border-radius: 10px 10px 10px 10px;
+}
+#search{
+	position: absolute;
+	left: 675px;
+	width: 500px;
+	height: 100px;
+}
+#searchbox{
+	margin-top: 40px;
+	margin-left: 20px;
+	padding-bottom: 5px;
+	border: 1px solid black;
+}
+#login{
+	position: absolute;
+	left: 1175px;
+	width: 200px;
+	height: 100px;	
+}
+#loginbutton{
+	margin-top: 40px;
+}
+#menu{
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height:70px;
+}
+#menu li{
+	list-style: none;
+	float: left;
+	width: 150px;
+	height: 50px;
+	font-weight: bold;
+	color: black;
+	padding-top: 30px;
+}
+.hr{
+	margin-top: 70px;
+}
+#middle{
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 400px;	
+}
+#album{
+	position: absolute;
+	border: 1px solid black;
+	width: 700px;
+	height: 400px;
+}
+#chart{
+	position: absolute;
+	left: 700px;
+	width: 175px;
+	height: 350px;
+	border: 1px solid black;
+	border-radius: 10px 10px 10px 10px;
+	margin-left: 25px;
+	margin-top: 25px;
+}
+#bottom{
+	margin-top: 400px;
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 300px;
+}
+#notice{
+	position: absolute;
+	width: 450px;
+	height: 300px;
+	border: 1px solid black;
+}
+#news{
+	position: absolute;
+	left: 450px;
+	width: 450px;
+	height: 300px;
+	border: 1px solid black;
+}
+#under{
+	margin-top: 700px;
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 38px;
+	font-size: 12px;
+}
+#under2{
+	position: absolute;
+	width: 900px;
+	height: 162px;
+	background-image: url("images/under.PNG");
+}
+#list td{
+	font-size: 15px;
+	
+}
