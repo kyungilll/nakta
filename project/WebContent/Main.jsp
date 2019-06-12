@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="music.MusicDAO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
@@ -59,25 +60,44 @@
 				<tbody>
 					<tr>
 						<%
-						//메인의 앨범사진 12개 url 을 끌어옴
-							MusicDAO dao = new MusicDAO(); 
-							String[] cover = new String[12];
-								cover = dao.mainImage(); 
-
-							for (int i = 0; i < 12; i++) {
-								String x = cover[i];
+							//메인의 앨범사진 12개 url 을 끌어옴
+							MusicDAO dao = new MusicDAO();
+							ArrayList<String> cover = dao.mainImage();
+							for (int i = 0; i < 6; i++) {
+								String x = cover.get(i);
 								if (i % 4 == 0) {
-							%>
-							<td><img alt="이미지 없음" src=<%=x%>><br></td>
-							<%
-								} else {
-							%>
-							<td><img alt="이미지 없음" src=<%=x%>></td>
-							<%
-								}
+						%>
+						<td><img alt="이미지 없음" src=<%=x%>><br></td>
+						
+						<%
+							} else {
+						%>
+						<td><img alt="이미지 없음" src=<%=x%>></td>
+						<%
+							}
 							}
 						%>
 
+					</tr>
+					<tr>
+					<%
+							//메인의 앨범사진 12개 url 을 끌어옴
+							MusicDAO dao1 = new MusicDAO();
+							ArrayList<String> cover1 = dao1.mainImage();
+							for (int i = 6; i < 12; i++) {
+								String x = cover1.get(i);
+								if (i % 4 == 0) {
+						%>
+						<td><img alt="이미지 없음" src=<%=x%>><br></td>
+						
+						<%
+							} else {
+						%>
+						<td><img alt="이미지 없음" src=<%=x%>></td>
+						<%
+							}
+							}
+						%>
 					</tr>
 				</tbody>
 			</table>
