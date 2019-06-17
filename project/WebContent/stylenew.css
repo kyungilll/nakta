@@ -46,33 +46,28 @@
 	color: black;
 	padding-top: 30px;
 }
-.hr{
-	margin-top: 70px;
-}
 #middle{
 	position: absolute;
 	left: 475px;
 	width: 900px;
 	height: 400px;	
 }
-#album{
-	position: absolute;
-	width: 700px;
-	height: 400px;
-	float: left;
+.hr{
+	margin-top: 70px;
 }
-#table{
-	margin-top: 25px;
-}
-#hotsearch{
+#content{
 	position: absolute;
-	left: 700px;
-	width: 175px;
-	height: 350px;
-	border: 1px solid black;
-	border-radius: 10px 10px 10px 10px;
-	margin-left: 25px;
-	margin-top: 25px;
+	left: 475px;
+	width: 900px;
+	height: 800px;
+}
+#list{
+	width: 900px;
+	height: 800px;
+}
+#list tr{
+	width: 900px;
+	height: 100px;
 }
 #bottom{
 	margin-top: 400px;
@@ -80,34 +75,6 @@
 	left: 475px;
 	width: 900px;
 	height: 300px;
-}
-#chart{
-	position: absolute;
-	width: 450px;
-	height: 300px;
-}
-#container{
-	position: absolute;
-	left: 450px;
-	width: 450px;
-	height: 400px;
-}
-#notice{
-	padding-left: 20px;
-	position: absolute;
-	width: 450px;
-	height: 150px;
-}
-#news{
-	padding-left: 20px;
-	position: absolute;
-	margin-top: 150px;
-	width: 450px;
-	height: 150px;
-	font: 10px black;
-}
-#news1 li{
-	font-size: 15px;
 }
 #under{
 	margin-top: 800px;
