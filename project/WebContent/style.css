@@ -1,10 +1,12 @@
 @charset "UTF-8";
-#top{
+
+#top {
 	margin-top: 50px;
 	width: 900px;
 	height: 100px;
 }
-#title{
+
+#title {
 	position: absolute;
 	left: 475px;
 	width: 200px;
@@ -12,34 +14,44 @@
 	background-image: url("images/Title.png");
 	border-radius: 10px 10px 10px 10px;
 }
-#search{
+
+#search {
 	position: absolute;
 	left: 675px;
 	width: 500px;
 	height: 100px;
 }
-#searchbox{
+
+#searchbox {
 	margin-top: 40px;
 	margin-left: 20px;
 	padding-bottom: 5px;
 	border: 1px solid black;
 }
-#login{
+
+#login {
 	position: absolute;
 	left: 1175px;
 	width: 200px;
-	height: 100px;	
+	height: 100px;
 }
-#loginbutton{
-	margin-top: 40px;
+
+img:hover {
+	-moz-box-shadow: 1px 1px 5px #999;
+	-webkit-box-shadow: 1px 1px 5px #999;
+	box-shadow: 1px 1px 5px #999;
+	-webkit-transition: all .2s ease;
+	transition: all .2s ease;
 }
-#menu{
+
+#menu {
 	position: absolute;
 	left: 475px;
 	width: 900px;
-	height:70px;
+	height: 70px;
 }
-#menu li{
+
+#menu li {
 	list-style: none;
 	float: left;
 	width: 150px;
@@ -48,22 +60,26 @@
 	color: black;
 	padding-top: 30px;
 }
-.hr{
+
+.hr {
 	margin-top: 70px;
 }
-#middle{
+
+#middle {
 	position: absolute;
 	left: 475px;
 	width: 900px;
-	height: 400px;	
+	height: 400px;
 }
-#album{
+
+#album {
 	position: absolute;
 	border: 1px solid black;
 	width: 700px;
 	height: 400px;
 }
-#chart{
+
+#chart {
 	position: absolute;
 	left: 700px;
 	width: 175px;
@@ -73,27 +89,31 @@
 	margin-left: 25px;
 	margin-top: 25px;
 }
-#bottom{
+
+#bottom {
 	margin-top: 400px;
 	position: absolute;
 	left: 475px;
 	width: 900px;
 	height: 300px;
 }
-#notice{
+
+#notice {
 	position: absolute;
 	width: 450px;
 	height: 300px;
 	border: 1px solid black;
 }
-#news{
+
+#news {
 	position: absolute;
 	left: 450px;
 	width: 450px;
 	height: 300px;
 	border: 1px solid black;
 }
-#under{
+
+#under {
 	margin-top: 700px;
 	position: absolute;
 	left: 475px;
@@ -101,13 +121,14 @@
 	height: 38px;
 	font-size: 12px;
 }
-#under2{
+
+#under2 {
 	position: absolute;
 	width: 900px;
 	height: 162px;
-	background-image: url("images/under.PNG");
+	background-image: url("images/under.png");
 }
-#list td{
+
+#list td {
 	font-size: 15px;
-	
 }
