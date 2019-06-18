@@ -56,18 +56,96 @@
 		<div id = "content">
 			<table id = "list">
 				<tr>
-					<td colspan="2"><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/576/81227576_1560504311638_1_200x200.JPG" alt="" width="100px" height="100px">Radio, Play this song - Francis(프란시스)</td>
+					<td width="100px" height="100px">
+						<img src="images/music.png"
+						alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						솔직하게 말해서 나 - 김나영
+					</td>
+					<td width="100px" height="100px"></td>
+					<td width="100px" height="100px">
+						<img src="images/music2.png"
+						alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						사랑에 연습이 있었다면 - 임재현(prod.by 2soo)
+					</td>
 				</tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
-				<tr></tr>
+				<tr>
+					<td width="100px" height="100px">
+						<img src="images/music3.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						너에게 못했던 내 마지막 말은 - 다비치
+					</td>
+					<td width="100px" height="100px"></td>
+					<td width="100px" height="100px">
+						<img src="images/music4.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						누구 없소(NO ONE) - 이하이(Feat. B.I of iKON)
+					</td>
+				</tr>
+				<tr>
+					<td width="100px" height="100px">
+						<img src="images/music5.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						작은 것들을 위한 시(Boy With Luv)(Feat.Halsey)<br>
+						- 방탄소년단
+					</td>
+					<td width="100px" height="100px"></td>
+					<td width="100px" height="100px">
+						<img src="images/music6.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						bad guy - Billie Eilish
+					</td>
+				</tr>
+				<tr>
+					<td width="100px" height="100px">
+						<img src="images/music7.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						2002 - Anne Marie
+					</td>
+					<td width="100px" height="100px"></td>
+					<td width="100px" height="100px">
+						<img src="images/music8.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						대충 입고 나와 - 우디(Woody)
+					</td>
+				</tr>
+				<tr>
+					<td width="100px" height="100px">
+						<img src="images/music9.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						EVREYDAY - 반엘(VAN EL)
+					</td>
+					<td width="100px" height="100px"></td>
+					<td width="100px" height="100px">
+						<img src="images/music10.png" alt="" width="100px" height="100px">
+					</td>
+					<td width="300px" height="100px">
+						GOOD LUCK - 소베(SOBAE)
+					</td>
+				</tr>
+				<tr>
+					<td width="100px" height="100px"></td>
+					<td width="300px" height="100px"></td>
+					<td width="100px" height="100px" colspan="3" style ="font-align: center">
+						<a href = "newmusic.jsp" style="text-decoration: none; color: black">1</a>
+						<a href = "newmusic2.jsp" style="text-decoration: none; color: black">2</a>
+						<a href = "newmusic3.jsp" style="text-decoration: none; color: black">3</a>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<div id = "under">
-				<a href = "">회사소개</a> | <a href ="">이용약관</a> | <a href="">개인정보처리방침</a> | <a href = "">청소년보호정책</a> | 이메일주소무단수집거부 | 서비스 이용문의
+				회사소개 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 이메일주소무단수집거부 | 서비스 이용문의
 			<div id = "under2">
 			</div>
 		</div>

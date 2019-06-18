@@ -1,5 +1,14 @@
 <%@page import="bean.Mp3DTO"%>
 <%@page import="bean.Mp3DAO"%>
+<%@page import="java.io.Console"%>
+<%@page import="bean.MusicDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="bean.MusicDAO"%>
+<%@page import="org.jsoup.Jsoup"%>
+<%@page import="org.jsoup.nodes.Document"%>
+<%@page import="org.jsoup.nodes.Element"%>
+<%@page import="org.jsoup.select.Elements"%>
+<%@page import="java.io.IOException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -63,39 +72,59 @@
 		</div>
 		<hr class = "hr">
 		<div id = "middle">
-			<div id = "album">
-				<h5 style="font-weight: bold">최신음악</h5>
-				<table id="table">
-					<tr>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/576/81227576_1560504311638_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/226/277/81226277_1560489296971_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/222/522/81222522_1560733312942_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/588/81227588_1560509622871_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-					</tr>
-					<tr>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/413/81227413_1560501711179_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/269/81227269_1560735807632_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/577/81227577_1560510801667_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-						<td><img src="//image.genie.co.kr/Y/IMAGE/IMG_ALBUM/081/227/026/81227026_1560735349252_1_200x200.JPG" alt="" width="170px" height="170px"></td>
-					</tr>
-				</table>
-			</div>
+				<div id = "album">
+					<h5 style="font-weight: bold">최신음악</h5>
+					<a href="newmusic.jsp">
+						<table id="table">
+							<tr>
+								<td><img src="images/music.png" alt="" width="170px" height="170px"></td>
+								<td><img src="images/music2.png" alt="" width="170px" height="170px"></td>
+								<td><img src="images/music3.png" alt="" width="170px" height="170px"></td>
+								<td><img src="images/music4.png" alt="" width="170px" height="170px"></td>
+							</tr>
+							<tr>
+								<td><img src="images/music5.png" alt="" width="170px" height="170px"></td>
+								<td><img src="images/music6.png" alt="" width="170px" height="170px"></td>
+								<td><img src="images/music7.png" alt="" width="170px" height="170px"></td>
+								<td><img src="images/music8.png" alt="" width="170px" height="170px"></td>
+							</tr>
+						</table>
+					</a>
+				</div>
 			<br>
 			<div id = "hotsearch">
 			<h5 class = "hot" style="font-weight: bold">인기 검색어</h5>
-			<br>
-				<ol>
-					<li>구로점</li>
-					<li>구로점 폐쇄</li>
-					<li>구내 식당</li>
-					<li>노량진역</li>
-					<li>노량진 롯데리아</li>
-					<li>노량진 지점</li>
-					<li>한국 에콰도르</li>
-					<li>이강인</li>
-					<li>이광연</li>
-					<li>김정은</li>
-				</ol>
+				<table>
+					</tr>
+					<br>
+					<!-- 인기검색어 가져오기 -->
+					<%
+						String url1 = "https://www.genie.co.kr/chart/top200";
+						Document doc = null;
+						try {
+							doc = Jsoup.connect(url1).get();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						Elements element = doc.select("div.aside_realtime"); //검색어 틀
+						// 원하는 내용이 있는 틀(?) 입력
+						ArrayList list = new ArrayList();
+						int n = 1;
+						for (Element y : element.select("a")) { // 검색어
+							String word = y.text();
+					%>
+					<tr><%=n + "위  "%>
+					<tr>
+					<tr>
+						<a href=""><%=word%></a>
+						</a>
+						<br>
+					</tr>
+					<%
+						n++;
+						}
+					%>
+				</table>
 			</div>
 		</div>
 		
@@ -164,7 +193,7 @@
 			</div>
 		</div>
 		<div id = "under">
-				<a href = "">회사소개</a> | <a href ="">이용약관</a> | <a href="">개인정보처리방침</a> | <a href = "">청소년보호정책</a> | 이메일주소무단수집거부 | 서비스 이용문의
+				회사소개 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 이메일주소무단수집거부 | 서비스 이용문의
 			<div id = "under2">
 			</div>
 		</div>
