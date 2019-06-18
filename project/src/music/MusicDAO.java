@@ -1,8 +1,7 @@
-package music;
+package bean;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,23 +20,6 @@ public class MusicDAO {
 	String url;
 	String user;
 	String password;
-
-	public ArrayList<String> mainImage() throws Exception { // 메인에 있는 앨범사진 추출
-		 Document doc = Jsoup.connect("https://www.genie.co.kr/").get();
-	        String folder = doc.title();
-	        Element element = doc.select("div.recent-music").get(0);
-	        Elements img = element.select("img");
-	        int page = 0;
-	        ArrayList<String> cover = new ArrayList<String>();
-	       int i=0;
-	        for (Element e : img) {
-	            String url = e.getElementsByAttribute("src").attr("src");
-	            cover.add(url);
-	            i++;
-	        }
-	      System.out.println("메인사진 가져오기 성공");
-	        return cover;
-	}
 	
 	public String[] image() throws Exception { // top50 페이지의 이미지 주소배열
 		 Document doc = Jsoup.connect("https://www.genie.co.kr/chart/top200").get();
@@ -53,7 +35,6 @@ public class MusicDAO {
 	            cover[i]=url;
 	            i++;
 	        }
-	        System.out.println("top50의 앨범사진 가져오기 성공");
 	        return cover;
 	}
 
@@ -70,7 +51,6 @@ public class MusicDAO {
 
 		ps1.executeUpdate();
 		ps2.executeUpdate();
-		System.out.println("mp3테이블 데이터 삭제, 순번 호기화 완료");
 	}
 
 	public void top50() {
@@ -112,7 +92,7 @@ public class MusicDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("top50곡 가수, 제목 DB저장완료");
+		System.out.println("가수, 제목 DB저장완료");
 	}
 
 	public void insert(MusicDTO dto) throws Exception {
@@ -131,8 +111,6 @@ public class MusicDAO {
 		ps.setInt(5, dto.getViews());
 
 		ps.executeUpdate();
-		
-		mgr.freeConnection(con, ps);
 	}
 
 	public ArrayList selectAll() {// 모든정보 검색
@@ -144,7 +122,6 @@ public class MusicDAO {
 		try {
 
 			con = mgr.getConnection();
-			
 			System.out.println("2. DB연결 완료");
 
 			String sql = "select * from mp3";
@@ -173,12 +150,10 @@ public class MusicDAO {
 				rs.close();
 				ps.close();
 				con.close();
-				mgr.freeConnection(con, ps, rs);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("저장된 mp3가져오기 성공");
 		return list;
 	}
 }
