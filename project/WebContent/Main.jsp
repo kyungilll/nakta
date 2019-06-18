@@ -28,7 +28,8 @@
 </head>
 <body>
 	<div id="top">
-		<div id="title"></div>
+		<div id="title" Onclick="location.href='Main.jsp'"
+			style="cursor: pointer;"></div>
 
 		<div id="search">
 			<form action="">
@@ -76,7 +77,8 @@
 							for (int i = 0; i < 4; i++) {
 								String x = cover.get(i);
 						%>
-						<td><a href=""><img alt="이미지 없음" src=<%=x%> width=173px, height=173px id="mainimage"></a></td>
+						<td><a href=""><img alt="이미지 없음" src=<%=x%> width=173px,
+								height=173px id="mainimage"></a></td>
 						<%
 							}
 						%>
@@ -87,7 +89,8 @@
 							for (int i = 4; i < 8; i++) {
 								String x = cover.get(i);
 						%>
-						<td><a href=""><img alt="이미지 없음" src=<%=x%> width=173px, height=173px id="mainimage"></a></td>
+						<td><a href=""><img alt="이미지 없음" src=<%=x%> width=173px,
+								height=173px id="mainimage"></a></td>
 						<%
 							}
 						%>
@@ -101,11 +104,10 @@
 
 		<div id="chart">
 			<table>
-				<tr align="center">인기검색어
+				<tr>인기검색어
 				</tr>
-				<br>
-				<br>
 				<!-- 인기검색어 가져오기 -->
+				<hr>
 				<%
 					MusicDTO dto = new MusicDTO();
 					String url1 = "https://www.genie.co.kr/chart/top200";
@@ -126,12 +128,11 @@
 					for (Element y : element.select("a")) { // 검색어
 						String word = y.text();
 				%>
-				<tr><%=n + "위  "%>
 				<tr>
-				<tr>
-					<a href=""><%=word%></a>
-					</a>
-					<br>
+					<td><%=n + "위 "%></td>
+
+					<td><a href=""><%=word%></a>
+					<td>
 				</tr>
 				<%
 					n++;
@@ -142,13 +143,39 @@
 	</div>
 
 	<div id="bottom">
-		<div id="notice"></div>
+		<div id="notice">
+			<table>
+				<tbody>
+					<tr align="center">실시간 차트
+					</tr>
+					<%
+						dao.drop(); /* DB에 있는 자료 모두 버리고 순번 초기화 */
+						dao.top50(); /* top50개 음원 제목, 가수명 DB입력 */
+						String[] cover1 = dao.image(); /* 앨범사진 URL을 배열로 만듦 */
+
+						ArrayList listAll = new ArrayList();
+						listAll = dao.selectAll();
+						for (int i = 0; i < 10; i++) {
+							MusicDTO dto1 = (MusicDTO) listAll.get(i);
+							String album = cover1[i];
+					%>
+					<tr id="list">
+						<td align="center"><%=dto1.getNum() + "위"%></td>
+						<td align="left"><a href=""><%=dto1.getTitle()%></a></td>
+						<td align="left"><a href=""><%=dto1.getArtist()%></a></td>
+					</tr>
+					<%
+						}
+					%>
+				</tbody>
+			</table>
+		</div>
 
 		<div id="news"></div>
 	</div>
 	<div id="under">
 		회사소개 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 이메일주소무단수집거부 | 서비스 이용문의
 		<div id="under2"></div>
-		</div>
+	</div>
 </body>
 </html>
