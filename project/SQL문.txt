@@ -9,8 +9,6 @@ views int(10)
 
 alter table mp3 auto_increment=0;
 
-alter table mp3 modify column title varchar(100);
-alter table mp3 modify column artist varchar(100);
-alter table mp3 modify column genre varchar(100);
-ALTER DATABASE music DEFAULT CHARACTER SET utf8;
-ALTER table mp3 DEFAULT CHARACTER SET utf8;
+1. jsoup 빌드패스, lib에 추가
+2. mySQL 각 테이블 생성
+3. 아무노래 50곡 넣기 (번호.mp3)
