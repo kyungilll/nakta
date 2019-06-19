@@ -21,8 +21,10 @@
 <body>
 	<div id="top">
 		<div id="top">
-			<div id="title" Onclick="location.href='Main.jsp'"
-				style="cursor: pointer;"></div>
+			<div id="title">
+				<a href="Main.jsp"><img src="images/Title.png"
+					style="border-radius: 10px 10px 10px 10px"></a>
+			</div>
 
 			<div id="search">
 				<form action="">
@@ -72,7 +74,7 @@
 			</div>
 		</div>
 
-
+		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div id="top50">
 			<!-- TOP 50 차트 -->
 			<div align="center" id="top50">
@@ -90,7 +92,6 @@
 							dao.drop(); /* DB에 있는 자료 모두 버리고 순번 초기화 */
 							dao.top50(); /* top50개 음원 제목, 가수명 DB입력 */
 							String[] cover = dao.image(); /* 앨범사진 URL을 배열로 만듦 */
-
 							ArrayList listAll = new ArrayList();
 							listAll = dao.selectAll();
 							for (int i = 0; i < listAll.size(); i++) {
@@ -101,8 +102,13 @@
 
 							<td align="center"><img alt="이미지 없음" src=<%=album%>></td>
 							<td align="center"><%=dto.getNum() + "위"%></td>
-							<td align="center"><%=dto.getTitle()%> <br> <br> <%=dto.getArtist()%></td>
+							<td align="center"><%=dto.getTitle()%> <br> <%=dto.getArtist()%>
+								<br>
+							<br>
 
+								<button type="button" name="num1"
+									class="btn btn-sm btn-block blue"
+									onclick="javascript:location.href='player.jsp?mnum=<%=i%>'">재생</button></td>
 						</tr>
 						<%
 							}
@@ -111,6 +117,7 @@
 				</table>
 
 			</div>
+			<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 		</div>
 		<div id="under">
 			회사소개 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 이메일주소무단수집거부 | 서비스 이용문의
