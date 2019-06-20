@@ -1,14 +1,13 @@
+
+mp3 ���̺� �����
+
 create table mp3(
 num int(5) primary key auto_increment,
 title varchar(100),
 artist varchar(100),
 date varchar(15),
 genre varchar(100),
-views int(10)
+views int(10),
+img varchar(100)
 );
 
-alter table mp3 auto_increment=0;
-
-1. jsoup 빌드패스, lib에 추가
-2. mySQL 각 테이블 생성
-3. 아무노래 50곡 넣기 (번호.mp3)
