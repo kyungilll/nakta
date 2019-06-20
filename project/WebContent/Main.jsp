@@ -27,9 +27,10 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div id="top">
-		<div id="title" Onclick="location.href='Main.jsp'"
-			style="cursor: pointer;"></div>
+	<div id = "top">
+			<div id = "title">
+				<a href="Main.jsp"><img src="images/Title.png" style="border-radius: 10px 10px 10px 10px"></a>
+			</div>
 
 		<div id="search">
 			<form action="">
@@ -44,7 +45,7 @@
 				<tr>
 					<td><img src="images/Camel.png" alt="이미지 없음"></td>
 					<td>
-						<form action="">
+						<form action="login.jsp">
 							<button type="submit" id="loginbutton" class="btn btn-info">로그인</button>
 						</form>
 					</td>
@@ -63,6 +64,25 @@
 		</table>
 	</div>
 	<hr class="hr">
+	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+	<div><!-- 세션(음악번호: numList / 제목: titleList -->
+			최근 재생한 음악 :
+			<%
+			ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
+			ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
+			if(numList==null){
+				%>없음<% 
+			} else if(numList.size()==1){ //세션에 저장된 내용이 한 개일 때
+			%><br>
+				<a href="">현재 <%=numList.get(0)+1%>위</a><br>
+				<a href=""><%=titleList.get(0)%></a>
+			<% } else{	// 두 개 이상일 때
+			%> <br>
+				<a href="">현재 <%=numList.get(numList.size()-1)+1%>위</a><br>
+				<a href=""><%=titleList.get(titleList.size()-1)%></a>
+			<% } %>
+			
+		</div>
 	<div id="middle">
 		<div id="album" class="album">
 			<table>
@@ -112,19 +132,15 @@
 					MusicDTO dto = new MusicDTO();
 					String url1 = "https://www.genie.co.kr/chart/top200";
 					Document doc = null;
-
 					try {
 						doc = Jsoup.connect(url1).get();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-
 					Elements element = doc.select("div.aside_realtime"); //검색어 틀
 					// 원하는 내용이 있는 틀(?) 입력
-
 					ArrayList list = new ArrayList();
 					int n = 1;
-
 					for (Element y : element.select("a")) { // 검색어
 						String word = y.text();
 				%>
@@ -148,11 +164,11 @@
 				<tbody>
 					<tr align="center">실시간 차트
 					</tr>
+					<hr>
 					<%
 						dao.drop(); /* DB에 있는 자료 모두 버리고 순번 초기화 */
 						dao.top50(); /* top50개 음원 제목, 가수명 DB입력 */
 						String[] cover1 = dao.image(); /* 앨범사진 URL을 배열로 만듦 */
-
 						ArrayList listAll = new ArrayList();
 						listAll = dao.selectAll();
 						for (int i = 0; i < 10; i++) {
@@ -172,6 +188,7 @@
 		</div>
 
 		<div id="news"></div>
+		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 	</div>
 	<div id="under">
 		회사소개 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 이메일주소무단수집거부 | 서비스 이용문의
