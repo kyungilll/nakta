@@ -64,25 +64,34 @@
 		</table>
 	</div>
 	<hr class="hr">
-	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-	<div><!-- 세션(음악번호: numList / 제목: titleList -->
+		<div><!-- 세션(음악번호: numList / 제목: titleList -->
 			최근 재생한 음악 :
 			<%
 			ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
 			ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
-			if(numList==null){
-				%>없음<% 
-			} else if(numList.size()==1){ //세션에 저장된 내용이 한 개일 때
+			if(numList.size()<=1){ //세션에 저장된 내용이 한 개 이하일 때
 			%><br>
-				<a href="">현재 <%=numList.get(0)+1%>위</a><br>
-				<a href=""><%=titleList.get(0)%></a>
-			<% } else{	// 두 개 이상일 때
-			%> <br>
-				<a href="">현재 <%=numList.get(numList.size()-1)+1%>위</a><br>
-				<a href=""><%=titleList.get(titleList.size()-1)%></a>
-			<% } %>
+			<table>
+			<tbody>
 			
+			<td>
+				<a href="">현재 <%=numList.get(0)+1%>위</a>
+				<a href=""><%=titleList.get(0)%></a>
+			</td>
+			
+			<% } else{	// 두 개 이상일 때
+				for(int i =1; i<numList.size();i++){
+			%> <br>
+			<td>
+				<a href="player.jsp?mnum=<%=numList.get(numList.size()-i)%>">현재 <%=numList.get(numList.size()-i)+1%>위</a>
+				<a href="player.jsp?mnum=<%=numList.get(numList.size()-i)%>"><%=titleList.get(titleList.size()-i)%></a>
+			</td>
+			<% } } %>
+			</tbody>
+			</table>
 		</div>
+	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+	
 	<div id="middle">
 		<div id="album" class="album">
 			<table>
