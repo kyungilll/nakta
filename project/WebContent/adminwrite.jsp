@@ -9,12 +9,14 @@
 	<body>
 		<%
 			String userId = (String)session.getAttribute("InputId");
-			String admin = "admin";
-			if(userId == admin){
+			
+			if(userId.equals("admin")){
 				response.sendRedirect("write.jsp");
 			}else{
 				out.write("<script>alert('사용권한이 없습니다.')</script>");
-			}
+				out.write("<script>history.go(-1)</script>");
+			};
+			
 		%>
 	</body>
 </html>

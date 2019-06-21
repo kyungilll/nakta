@@ -29,12 +29,6 @@
 					return false;
 				});
 
-				$("#write").click(function(){
-					$.ajax({
-						url:"adminwrite.jsp"
-					})
-				});
-
 			});
 		</script>
 	</head>
@@ -121,14 +115,11 @@
 							}
 						%>
 					</table>
-					<%
-						Object admin = session.getAttribute("admin");
-						if(userId == admin){
-					%>
-					<form action="write.jsp">
+					
+					<form action="adminwrite.jsp">
 						<button type="submit" id="write" class="btn btn-secondary">글 쓰기</button>
 					</form>
-					<%} %>
+					
 				</center>
 		
 		

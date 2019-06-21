@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>Login Page</title>
 <link rel="stylesheet" type="text/css" href="stylelogin.css" />
-<link rel="stylesheet" type="text/css" href= "style.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -20,7 +19,7 @@
 	<div id="top">
 		<div id = "title">
 			<a href="main.jsp"><img src="img/Title.png" style="border-radius: 10px 10px 10px 10px"></a>
-	</div>
+		</div>
 
 	<div id="contain">
 		<div id="di1">
@@ -28,24 +27,20 @@
 		</div>
 		<form action="login_check.jsp" method="post">
 			<div id="di2">
-				<center>
-					<img id="profile-img" class="profile-img-card"
-						src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-					<p id="profile-name" class="profile-name-card"></p>
-					<span id="reauth-email" class="reauth-email"></span> 
-					<input type="text" name="id" id="inputId" class="form-control"
-						placeholder="ID" required autofocus> 
-						<input type="password" name="pw" id="inputPassword" class="form-control"
-						placeholder="Password" required>
-					<div></div>
-					<input class="btn btn-lg btn-primary btn-block btn-signin"
-						type="submit" value="Login">
+			<center>
+				<img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+				<p id="profile-name" class="profile-name-card"></p>
+				<span id="reauth-email" class="reauth-email"></span> 
+				<input type="text" name="id" id="inputId" class="form-control" placeholder="ID" required autofocus> 
+				<input type="password" name="pw" id="inputPassword" class="form-control" placeholder="Password" required>
+				<div></div>
+				<input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Login">
 		</form>
+		<div></div>
 		<form action="signin.jsp">
-			<input class="btn btn-lg btn-primary btn-block btn-signin"
-				type="submit" value="SignIn">
+			<input class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="SignIn">
 		</form>
-		</center>
+			</center>
 	</div>
 	</div>
 </body>
