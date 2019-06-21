@@ -64,12 +64,14 @@
 		</table>
 	</div>
 	<hr class="hr">
-		<div><!-- 세션(음악번호: numList / 제목: titleList -->
+		<div id="recent" class="recent"><!-- 세션(음악번호: numList / 제목: titleList -->
 			최근 재생한 음악 :
 			<%
 			ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
 			ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
-			if(numList.size()<=1){ //세션에 저장된 내용이 한 개 이하일 때
+			if(numList==null){
+				
+			}else if(numList.size()==1 ){ //세션에 저장된 내용이 한 개 이하일 때
 			%><br>
 			<table>
 			<tbody>

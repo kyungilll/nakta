@@ -37,9 +37,9 @@
 			<div id="login">
 				<table>
 					<tr>
-						<td><img src="images/Camel.png"></td>
+						<td><img src="images/Camel.png" alt="이미지 없음"></td>
 						<td>
-							<form action="">
+							<form action="login.jsp">
 								<button type="submit" id="loginbutton" class="btn btn-info">로그인</button>
 							</form>
 						</td>
@@ -73,33 +73,39 @@
 				<a class="dropdown-item" href="#">Separated link</a>
 			</div>
 		</div>
-		<div><!-- 세션(음악번호: numList / 제목: titleList -->
+		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+		<div id="recent" class="recent">
+			<!-- 세션(음악번호: numList / 제목: titleList -->
 			최근 재생한 음악 :
 			<%
-			ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
-			ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
-			if(numList.size()<=1){ //세션에 저장된 내용이 한 개 이하일 때
+				ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
+				ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
+				if (numList == null) {
+
+				} else if (numList.size() == 1) { //세션에 저장된 내용이 한 개 이하일 때
 			%><br>
 			<table>
-			<tbody>
-			
-			<td>
-				<a href="">현재 <%=numList.get(0)+1%>위</a>
-				<a href=""><%=titleList.get(0)%></a>
-			</td>
-			
-			<% } else{	// 두 개 이상일 때
-				for(int i =1; i<numList.size();i++){
-			%> <br>
-			<td>
-				<a href="player.jsp?mnum=<%=numList.get(numList.size()-i)%>">현재 <%=numList.get(numList.size()-i)+1%>위</a>
-				<a href="player.jsp?mnum=<%=numList.get(numList.size()-i)%>"><%=titleList.get(titleList.size()-i)%></a>
-			</td>
-			<% } } %>
-			</tbody>
+				<tbody>
+
+					<td><a href="">현재 <%=numList.get(0) + 1%>위
+					</a> <a href=""><%=titleList.get(0)%></a></td>
+
+					<%
+						} else { // 두 개 이상일 때
+							for (int i = 1; i < numList.size(); i++) {
+					%>
+					<br>
+					<td><a
+						href="player.jsp?mnum=<%=numList.get(numList.size() - i)%>">현재 <%=numList.get(numList.size() - i) + 1%>위
+					</a> <a href="player.jsp?mnum=<%=numList.get(numList.size() - i)%>"><%=titleList.get(titleList.size() - i)%></a>
+					</td>
+					<%
+						}
+						}
+					%>
+				</tbody>
 			</table>
 		</div>
-		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 		<div id="top50">
 			<!-- TOP 50 차트 -->
 			<div align="center" id="top50">
@@ -128,8 +134,7 @@
 							<td align="center"><img alt="이미지 없음" src=<%=album%>></td>
 							<td align="center"><%=dto.getNum() + "위"%></td>
 							<td align="center"><%=dto.getTitle()%> <br> <%=dto.getArtist()%>
-								<br>
-							<br>
+								<br> <br>
 
 								<button type="button" name="num1"
 									class="btn btn-sm btn-block blue"
