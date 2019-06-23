@@ -5,31 +5,30 @@
 	pageEncoding="UTF8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>음악을 태우다 낙타</title>
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+	<meta charset="UTF-8">
+	<title>음악을 태우다 낙타</title>
+
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
 </head>
+
 <body>
-	<div id="top">
+	<html id="top">
 		<div id="top">
 			<div id="title">
-				<a href="Main.jsp"><img src="images/Title.png"
-					style="border-radius: 10px 10px 10px 10px"></a>
+				<a href="Main.jsp"><img src="images/Title.png" style="border-radius: 10px 10px 10px 10px"></a>
 			</div>
 
 			<div id="search">
 				<form action="">
-					<input type="text" id="searchbox"
-						style="width: 400px; height: 45px;" placeholder="검색어를 입력해주세요.">
+					<input type="text" id="searchbox" style="width: 400px; height: 45px;" placeholder="검색어를 입력해주세요.">
 					<button type="submit" class="btn btn-primary btn-lg">검색</button>
 				</form>
 			</div>
@@ -60,21 +59,7 @@
 		<hr class="hr">
 		<!-- Example single danger button -->
 
-		<div class="btn-group">
-			<!-- 정렬하기 버튼 -->
-			<button type="button" class="btn btn-danger dropdown-toggle"
-				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Action</button>
-			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">Action</a> <a
-					class="dropdown-item" href="#">Another action</a> <a
-					class="dropdown-item" href="#">Something else here</a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#">Separated link</a>
-			</div>
-		</div>
-		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-		<div id="recent" class="recent">
+		<div>
 			<!-- 세션(음악번호: numList / 제목: titleList -->
 			최근 재생한 음악 :
 			<%
@@ -88,7 +73,7 @@
 				<tbody>
 
 					<td><a href="">현재 <%=numList.get(0) + 1%>위
-					</a> <a href=""><%=titleList.get(0)%></a></td>
+						</a> <a href=""><%=titleList.get(0)%></a></td>
 
 					<%
 						} else { // 두 개 이상일 때
@@ -96,8 +81,7 @@
 					%>
 					<br>
 					<td><a
-						href="player.jsp?mnum=<%=numList.get(numList.size() - i)%>">현재 <%=numList.get(numList.size() - i) + 1%>위
-					</a> <a href="player.jsp?mnum=<%=numList.get(numList.size() - i)%>"><%=titleList.get(titleList.size() - i)%></a>
+							href="player.jsp?mnum=<%=numList.get(numList.size() - i)%>"><%=titleList.get(titleList.size() - i)%></a>
 					</td>
 					<%
 						}
@@ -106,16 +90,18 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="top50">
+		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+		<div id="middle">
+
 			<!-- TOP 50 차트 -->
 			<div align="center" id="top50">
-				<table border="10">
+				<table border="10" width=200;>
 					<tbody border="10">
 						<tr id="list">
 
 							<td align="center">IMAGE</td>
 							<td align="center">RANK</td>
-							<td align="center">TITLE</td>
+							<td align="center" width=50 style="word-break:break-all">TITLE</td>
 
 						</tr>
 						<%
@@ -133,12 +119,11 @@
 
 							<td align="center"><img alt="이미지 없음" src=<%=album%>></td>
 							<td align="center"><%=dto.getNum() + "위"%></td>
-							<td align="center"><%=dto.getTitle()%> <br> <%=dto.getArtist()%>
-								<br> <br>
-
-								<button type="button" name="num1"
-									class="btn btn-sm btn-block blue"
-									onclick="javascript:location.href='player.jsp?mnum=<%=i%>'">재생</button></td>
+							<td align="center"><a href="search.jsp?search=<%=dto.getTitle()%>" style="word-break:break-all"><%=dto.getTitle()%></a>
+								<br> <a href="search.jsp?search=<%=dto.getArtist()%>" style="word-break:break-all"><%=dto.getArtist()%></a><br> <br>
+								
+								<a href="player.jsp?mnum=<%=i%>&title=<%=dto.getTitle()%>&artist=<%=dto.getArtist()%>" target="_blank" class="btn btn-primary">PLAY▶</a><!-- 새 창으로 띄움 -->
+								</td>
 						</tr>
 						<%
 							}
@@ -149,10 +134,12 @@
 			</div>
 			<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 		</div>
-		<div id="under">
+		<div id="under" style="margin-bottom:0px; position: absolute;">
 			회사소개 | 이용약관 | 개인정보처리방침 | 청소년보호정책 | 이메일주소무단수집거부 | 서비스 이용문의
-			<div id="under2">
-				<img alt="이미지가 없습니다." src="under2.png">
+				<div id="under2">
+					<img alt="이미지가 없습니다." src="under2.png">
+				</div>
 			</div>
 </body>
+
 </html>

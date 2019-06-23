@@ -8,14 +8,14 @@
 <%@page import="org.jsoup.select.Elements"%>
 <%@page import="java.io.IOException"%>
 
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF8"
+	pageEncoding="UTF8"%>
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="UTF-8">
-<title>À½¾ÇÀ» ÅÂ¿ì´Ù ³«Å¸</title>
+<title>ìŒì•…ì„ íƒœìš°ë‹¤ ë‚™íƒ€</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -27,27 +27,40 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div id = "top">
-			<div id = "title">
-				<a href="Main.jsp"><img src="images/Title.png" style="border-radius: 10px 10px 10px 10px"></a>
-			</div>
+	<div id="top">
+		<div id="title">
+			<a href="Main.jsp"><img src="images/Title.png"
+				style="border-radius: 10px 10px 10px 10px"></a>
+		</div>
 
 		<div id="search">
 			<form action="">
 				<input type="text" id="searchbox"
-					style="width: 400px; height: 45px;" placeholder="°Ë»ö¾î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
-				<button type="submit" class="btn btn-primary btn-lg">°Ë»ö</button>
+					style="width: 400px; height: 45px;" placeholder="ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.">
+				<button type="submit" class="btn btn-primary btn-lg">ê²€ìƒ‰</button>
 			</form>
 		</div>
 
 		<div id="login">
 			<table>
 				<tr>
-					<td><img src="images/Camel.png" alt="ÀÌ¹ÌÁö ¾øÀ½"></td>
-					<td>
+					<td><img src="images/Camel.png"></td>
+					<td width="150px">
+						<%
+							Object userId = session.getAttribute("InputId");
+							if (userId != null) {
+						%> <b><%=session.getAttribute("InputId")%></b>ë‹˜<br>ì•ˆë…•í•˜ì„¸ìš” :)
+
+						<form action="logout.jsp">
+							<button type="submit" id="logout" class="btn btn-dark">ë¡œê·¸ì•„ì›ƒ</button>
+						</form> <%
+ 	} else {
+ %>
 						<form action="login.jsp">
-							<button type="submit" id="loginbutton" class="btn btn-info">·Î±×ÀÎ</button>
-						</form>
+							<button type="submit" id="loginbutton" class="btn btn-info">ë¡œê·¸ì¸</button>
+						</form> <%
+ 	}
+ %>
 					</td>
 				</tr>
 			</table>
@@ -56,50 +69,55 @@
 	<div id="menu">
 		<table>
 			<ul>
-				<li class="menuselect"><a href="rank.jsp">À½¿øÂ÷Æ®</a>
-				<li class="menuselect"><a href="">ÃÖ½ÅÀ½¾Ç</a>
-				<li class="menuselect"><a href="">¸Å°ÅÁø</a>
-				<li class="menuselect"><a href="">°øÁö»çÇ×</a>
+				<li class="menuselect"><a href="rank.jsp">ìŒì›ì°¨íŠ¸</a>
+				<li class="menuselect"><a href="newmusic.jsp">ìµœì‹ ìŒì•…</a>
+				<li class="menuselect"><a href="">ë§¤ê±°ì§„</a>
+				<li class="menuselect"><a href="">ê³µì§€ì‚¬í•­</a>
 			</ul>
 		</table>
 	</div>
 	<hr class="hr">
-		<div id="recent" class="recent"><!-- ¼¼¼Ç(À½¾Ç¹øÈ£: numList / Á¦¸ñ: titleList -->
-			ÃÖ±Ù Àç»ıÇÑ À½¾Ç :
+			<div id="recent">
+			<!-- ì„¸ì…˜(ìŒì•…ë²ˆí˜¸: numList / ì œëª©: titleList -->
+			ìµœê·¼ ì¬ìƒí•œ ìŒì•… :
 			<%
-			ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
-			ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
-			if(numList==null){
-				
-			}else if(numList.size()==1 ){ //¼¼¼Ç¿¡ ÀúÀåµÈ ³»¿ëÀÌ ÇÑ °³ ÀÌÇÏÀÏ ¶§
+				ArrayList<Integer> numList = (ArrayList<Integer>) session.getAttribute("mnum");
+				ArrayList<String> titleList = (ArrayList<String>) session.getAttribute("title");
+				ArrayList<String> artistList = (ArrayList<String>) session.getAttribute("artist");
+
+				if (numList == null) {
+
+				} else if (numList.size() == 1) { //ì„¸ì…˜ì— ì €ì¥ëœ ë‚´ìš©ì´ í•œ ê°œ ì´í•˜ì¼ ë•Œ
 			%><br>
-			<table>
-			<tbody>
-			
-			<td>
-				<a href="">ÇöÀç <%=numList.get(0)+1%>À§</a>
-				<a href=""><%=titleList.get(0)%></a>
-			</td>
-			
-			<% } else{	// µÎ °³ ÀÌ»óÀÏ ¶§
-				for(int i =1; i<numList.size();i++){
-			%> <br>
-			<td>
-				<a href="player.jsp?mnum=<%=numList.get(numList.size()-i)%>">ÇöÀç <%=numList.get(numList.size()-i)+1%>À§</a>
-				<a href="player.jsp?mnum=<%=numList.get(numList.size()-i)%>"><%=titleList.get(titleList.size()-i)%></a>
-			</td>
-			<% } } %>
-			</tbody>
+			<table width="500">
+				<tbody>
+
+					<td><a class="btn btn-primary"
+						href="player.jsp?mnum=<%=numList.get(0)%>&title=<%=titleList.get(0)%>&artist=<%=artistList.get(0)%>" target="_blank"><%=artistList.get(0)%> / <%=titleList.get(0)%></a></td>
+
+					<%
+						} else { // ë‘ ê°œ ì´ìƒì¼ ë•Œ
+							for (int i = 1; i < numList.size(); i++) {
+					%>
+					<br>
+					<td><a class="btn btn-primary"
+						href="player.jsp?mnum=<%=numList.get(numList.size() - i)%> &title=<%=titleList.get(titleList.size() - i)%> &artist=<%=artistList.get(artistList.size() - i)%>" target="_blank"><%=artistList.get(artistList.size() - i)%> / <%=titleList.get(titleList.size() - i)%></a>
+					</td>
+					<%
+						}
+						}
+					%>
+				</tbody>
 			</table>
 		</div>
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-	
+
 	<div id="middle">
 		<div id="album" class="album">
 			<table>
 				<tbody>
 					<%
-						//¸ŞÀÎÀÇ ¾Ù¹ü»çÁø 1~4 / 4~8¹ø url À» ²ø¾î¿È
+						//ë©”ì¸ì˜ ì•¨ë²”ì‚¬ì§„ 1~4 / 4~8ë²ˆ url ì„ ëŒì–´ì˜´
 						MusicDAO dao = new MusicDAO();
 						ArrayList<String> cover = dao.mainImage();
 					%>
@@ -108,7 +126,7 @@
 							for (int i = 0; i < 4; i++) {
 								String x = cover.get(i);
 						%>
-						<td><a href=""><img alt="ÀÌ¹ÌÁö ¾øÀ½" src=<%=x%> width=173px,
+						<td><a href=""><img alt="ì´ë¯¸ì§€ ì—†ìŒ" src=<%=x%> width=173px,
 								height=173px id="mainimage"></a></td>
 						<%
 							}
@@ -120,7 +138,7 @@
 							for (int i = 4; i < 8; i++) {
 								String x = cover.get(i);
 						%>
-						<td><a href=""><img alt="ÀÌ¹ÌÁö ¾øÀ½" src=<%=x%> width=173px,
+						<td><a href=""><img alt="ì´ë¯¸ì§€ ì—†ìŒ" src=<%=x%> width=173px,
 								height=173px id="mainimage"></a></td>
 						<%
 							}
@@ -135,9 +153,9 @@
 
 		<div id="chart">
 			<table>
-				<tr>ÀÎ±â°Ë»ö¾î
+				<tr>ì¸ê¸°ê²€ìƒ‰ì–´
 				</tr>
-				<!-- ÀÎ±â°Ë»ö¾î °¡Á®¿À±â -->
+				<!-- ì¸ê¸°ê²€ìƒ‰ì–´ ê°€ì ¸ì˜¤ê¸° -->
 				<hr>
 				<%
 					MusicDTO dto = new MusicDTO();
@@ -148,18 +166,15 @@
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					Elements element = doc.select("div.aside_realtime"); //°Ë»ö¾î Æ²
-					// ¿øÇÏ´Â ³»¿ëÀÌ ÀÖ´Â Æ²(?) ÀÔ·Â
+					Elements element = doc.select("div.aside_realtime"); //ê²€ìƒ‰ì–´ í‹€
+					// ì›í•˜ëŠ” ë‚´ìš©ì´ ìˆëŠ” í‹€(?) ì…ë ¥
 					ArrayList list = new ArrayList();
 					int n = 1;
-					for (Element y : element.select("a")) { // °Ë»ö¾î
+					for (Element y : element.select("a")) { // ê²€ìƒ‰ì–´
 						String word = y.text();
 				%>
 				<tr>
-					<td><%=n + "À§ "%></td>
-
-					<td><a href=""><%=word%></a>
-					<td>
+					<td><%=n + "ìœ„ "%> <a href="search.jsp?search=<%=word%>"><%=word%></a></td>
 				</tr>
 				<%
 					n++;
@@ -169,17 +184,17 @@
 		</div>
 	</div>
 
-	<div id="bottom">
+	<div id="bottom" style="border: 10px;">
 		<div id="notice">
 			<table>
 				<tbody>
-					<tr align="center">½Ç½Ã°£ Â÷Æ®
+					<tr align="center">ì‹¤ì‹œê°„ ì°¨íŠ¸
 					</tr>
 					<hr>
 					<%
-						dao.drop(); /* DB¿¡ ÀÖ´Â ÀÚ·á ¸ğµÎ ¹ö¸®°í ¼ø¹ø ÃÊ±âÈ­ */
-						dao.top50(); /* top50°³ À½¿ø Á¦¸ñ, °¡¼ö¸í DBÀÔ·Â */
-						String[] cover1 = dao.image(); /* ¾Ù¹ü»çÁø URLÀ» ¹è¿­·Î ¸¸µê */
+						dao.drop(); /* DBì— ìˆëŠ” ìë£Œ ëª¨ë‘ ë²„ë¦¬ê³  ìˆœë²ˆ ì´ˆê¸°í™” */
+						dao.top50(); /* top50ê°œ ìŒì› ì œëª©, ê°€ìˆ˜ëª… DBì…ë ¥ */
+						String[] cover1 = dao.image(); /* ì•¨ë²”ì‚¬ì§„ URLì„ ë°°ì—´ë¡œ ë§Œë“¦ */
 						ArrayList listAll = new ArrayList();
 						listAll = dao.selectAll();
 						for (int i = 0; i < 10; i++) {
@@ -187,9 +202,11 @@
 							String album = cover1[i];
 					%>
 					<tr id="list">
-						<td align="center"><%=dto1.getNum() + "À§"%></td>
-						<td align="left"><a href=""><%=dto1.getTitle()%></a></td>
-						<td align="left"><a href=""><%=dto1.getArtist()%></a></td>
+						<td align="center" width=40;><%=dto1.getNum() + "ìœ„"%></td>
+						<td align="left"><a class="btn btn-primary"
+							href="search.jsp?search=<%=dto1.getTitle()%>"><%=dto1.getTitle()%></a></td>
+						<td align="left"><a class="btn btn-primary"
+							href="search.jsp?search=<%=dto1.getArtist()%>"><%=dto1.getArtist()%></a></td>
 					</tr>
 					<%
 						}
@@ -202,7 +219,7 @@
 		<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 	</div>
 	<div id="under">
-		È¸»ç¼Ò°³ | ÀÌ¿ë¾à°ü | °³ÀÎÁ¤º¸Ã³¸®¹æÄ§ | Ã»¼Ò³âº¸È£Á¤Ã¥ | ÀÌ¸ŞÀÏÁÖ¼Ò¹«´Ü¼öÁı°ÅºÎ | ¼­ºñ½º ÀÌ¿ë¹®ÀÇ
+		íšŒì‚¬ì†Œê°œ | ì´ìš©ì•½ê´€ | ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨ | ì²­ì†Œë…„ë³´í˜¸ì •ì±… | ì´ë©”ì¼ì£¼ì†Œë¬´ë‹¨ìˆ˜ì§‘ê±°ë¶€ | ì„œë¹„ìŠ¤ ì´ìš©ë¬¸ì˜
 		<div id="under2"></div>
 	</div>
 </body>
