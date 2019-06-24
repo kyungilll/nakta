@@ -79,8 +79,15 @@ public class MusicDAO {
 
 		Connection con = mgr.getConnection();
 
-		String sql1 = "delete from mp3;";
-		String sql2 = "alter table mp3 auto_increment=1";
+		String sql1 = "drop table mp3;";
+		String sql2 = "create table mp3(\n" + 
+				"num int(5) primary key auto_increment,\n" + 
+				"title varchar(100),\n" + 
+				"artist varchar(100),\n" + 
+				"date varchar(15),\n" + 
+				"genre varchar(100),\n" + 
+				"views int(10)\n" + 
+				"); ";
 
 		PreparedStatement ps1 = con.prepareStatement(sql1);
 		PreparedStatement ps2 = con.prepareStatement(sql2);
