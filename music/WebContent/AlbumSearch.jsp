@@ -22,49 +22,22 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				var check = false;
-				$("#selectAll").change(function() {
-					if(check == true){
-						$("#song-list input").attr("checked", false);
-						check = false;
-					}else{
-						$("#song-list input").attr("checked", true);
-						check = true;
-					}
-				});
-				$("#form").submit(function() {
-					alert("로그인이 필요합니다");
-					return false;
-				});
+				
 			});
 		</script>
 	</head>
 <body>
 		<%
 			String query = request.getParameter("search");
-			String url = "https://www.genie.co.kr/search/searchMain?query="+query;
+			String url = "https://www.genie.co.kr/search/searchAlbum?query="+query;
 			Document doc = null;
 			try {
 				doc = Jsoup.connect(url).get();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			Elements element = doc.select("div.search_keyword");
-			String check = element.select("p").text();
-			
-			if(0 < check.length()){
+			Elements element = doc.select("span.cover-img");
 		%>
-			<jsp:forward page="null.jsp"></jsp:forward>
-		<% 		
-			}
-			
-			element = doc.select("span.cover-img");
-		
-			Elements img = element.select("img");//아티스트 이미지
-			
-		
-		%>
-		
 		
 		<div id = "top">
 			<div id = "title">
@@ -111,78 +84,53 @@
 				<h2>검색 결과</h2>
 				<div id="current">
 					<ul>
-						<li><a href="#">통합검색</a></li>
+						<li><a href="지니.jsp?search=<%= query %>">통합검색</a></li>
 						<li><a href="SongSearch.jsp?search=<%= query %>">곡</a></li>
-						<li><a href="AlbumSearch.jsp?search=<%= query %>">앨범</a></li>
+						<li><a href="#">앨범</a></li>
 						<li>동영상</li>
 						<li><a href="MagazineSearch.jsp?search=<%= query %>">매거진</a></li>
 					</ul>
 				</div>
 			
 			<hr class="hr">
-			<%
-				if(img.isEmpty() == false){//이미지가 없으면 프로필 출력x
-			%>	
-			<div id="profile">
-				<%= img %>
-				<span style="position: absolute;">
-					<ul type="none">
-						<li style="font-size: 20px;">${param.search}</li>
-					<% 
-						element = doc.select("div.info-zone");// 프로필
-						
-						for(Element el : element.select("li")){
-							String profile = el.toString();
-					%>
-						<li><%= profile %></li>
-					<% 
-						}
-					%>
-					</ul>
-				</span>
-			</div>
-			<hr class="hr" color="blue">
-			
-			<%
-				}
-			%>
-			곡 전체선택<input type="checkbox" id="selectAll">
-			<form action="" id="form">
-			<button type="submit"><img src="images/save.PNG"></button>
-			<table border="2" width="700">
-				
+				<table border="2" style="width: 700px;">
 				<% 
-					String title = null;
+					String[] title = {null,null,null};
 					int cnt=0;
 					ArrayList list = new ArrayList();
-					element = doc.select("div.search_song");
-					// 원하는 내용이 있는 틀(?) 입력
-					for(Element name : element.select("tr.list > td.info > a[title]")){ // 노래 이름
-						list.add(name.text());
+					ArrayList list2 = new ArrayList();
+					ArrayList list3 = new ArrayList();
+					element = doc.select("div.search_album");
+					
+					for(Element t1 : element.select("dl.album-info > dt.ellipsis > a")){ // 제목
+						list.add(t1.text());
+					}
+					for(Element t1 : element.select("dl.album-info > dd.ellipsis > a")){ // 제목
+						list2.add(t1.text());
+					}
+					for(Element t1 : element.select("dl.album-info > dd.desc")){ // 제목
+						list3.add(t1.text());
 					}
 					
-					for(Element songimg : element.select("tr.list > td > a > img")){ // 노래 이미지
+					for(Element albumimg : element.select("li.list-album > a > img")){ // 노래 이미지
 						
-						title = (String)list.get(cnt);
+						title[0] = (String)list.get(cnt);
+						title[1] = (String)list2.get(cnt);
+						title[2] = (String)list3.get(cnt);
 						cnt++;
 				%>
-				<tr id="song-list" >
-					<td width="60"><input type="checkbox"></td>
-					<td class="number" style="text-align: center;"><%= cnt %></td>
-					<td class="img" style="width: 65px;"><%= songimg %></td>
+				<tr id="album-list">
+					<td class="albumpage"><%= albumimg %></td>
 					<td style="text-align: center;">
-						<%= title %><br>
-						<button type="submit"><img src="images/listen.PNG"></button>
-						<button type="submit"><img src="images/save.PNG"></button>
+						<span><%= title[0] %></span><br>
+						<span><%= title[1] %></span><br>
+						<span><%= title[2] %></span>
 					</td>
 				</tr>
 				<% 
 					}
 				%>
 			</table>
-			</form>
-			
-			
 			
 			</div>
 			

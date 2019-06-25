@@ -1,7 +1,4 @@
-
 <%@page import="java.util.ArrayList"%>
-<%@page import="bean.MemberDTO"%>
-<%@page import="bean.Mp3DAO"%>
 <%@page import="org.jsoup.Jsoup"%>
 <%@page import="org.jsoup.nodes.Document"%>
 <%@page import="org.jsoup.nodes.Element"%>
@@ -21,6 +18,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+		
 	</head>
 	<body>
 		
@@ -166,22 +164,33 @@
 					<hr>
 					<ul id = "news1">
 						<%
-							String url2 = "https://www.genie.co.kr/magazine?ctid=1";
+							String url2 = "https://www.genie.co.kr/magazine?ctid=1";//뉴스토픽 크롤링
+							int i=0;
 							try {
 								doc = Jsoup.connect(url2).get();
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
-				
+							String[] number ={"","","",""};
 							element = doc.select("div.list-normal");
-							int i=0;
+							for(Element check : element.select("li > a")){//페이지 번호를 받아오는중
+								if(i<4){
+									String dump=check.toString();
+									number[i] = dump.substring(46,50);
+									i++;
+								}
+								
+							}
+							i=0;
 							for(Element el : element.select("div.info > p")){
 								if(i < 4){
 								String news = el.text();//뉴스 타이틀
-								i++;
+								
+		
 						%>
-					 		<li id = "news1"><a href="Magazine.jsp?search=<%= news %>"><%= news %></a></li> 
+					 		<li id = "news1"><a href="Magazine.jsp?search=<%= number[i] %>"><%= news %></a></li>
 						<%
+								i++;
 								}
 							}
 						%>

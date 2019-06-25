@@ -8,7 +8,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+	<head>
 		<meta charset="UTF-8">
 		<title>음악을 태우다 낙타</title>
 		<link rel="stylesheet" type="text/css" href= "style.css">
@@ -42,40 +42,23 @@
 <body>
 		<%
 			String query = request.getParameter("search");
-			String url = "https://www.genie.co.kr/search/searchMain?query="+query;
+			String url = "https://www.genie.co.kr/search/searchSong?query="+query;
 			Document doc = null;
 			try {
 				doc = Jsoup.connect(url).get();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			Elements element = doc.select("div.search_keyword");
-			String check = element.select("p").text();
-			
-			if(0 < check.length()){
-		%>
-			<jsp:forward page="null.jsp"></jsp:forward>
-		<% 		
-			}
-			
-			element = doc.select("span.cover-img");
-		
-			Elements img = element.select("img");//아티스트 이미지
-			
 		
 		%>
-		
-		
 		<div id = "top">
 			<div id = "title">
-				<a href="main.jsp">메인으로 이동</a>
 			</div>
 			
 			<div id = "search">
 				<form action="지니.jsp">
-					<input type="text" id = "searchbox" style = "width: 400px; height: 45px;" placeholder="검색어를 입력해주세요."name="search" >
-					<button type="submit" class="btn btn-primary btn-lg" return false;>검색</button>
-					
+					<input type="text" id = "searchbox" style = "width: 400px; height: 45px;" placeholder="검색어를 입력해주세요." name="search">
+					<button type="submit" class="btn btn-primary btn-lg">검색</button>
 				</form>
 			</div>
 			
@@ -108,11 +91,11 @@
 		<hr class = "hr">
 		<div id = "middle">
 			<div id = "album">
-				<h2>검색 결과</h2>
+			<h2>검색 결과</h2>
 				<div id="current">
 					<ul>
-						<li><a href="#">통합검색</a></li>
-						<li><a href="SongSearch.jsp?search=<%= query %>">곡</a></li>
+						<li><a href="지니.jsp?search=<%= query %>">통합검색</a></li>
+						<li><a href="#">곡</a></li>
 						<li><a href="AlbumSearch.jsp?search=<%= query %>">앨범</a></li>
 						<li>동영상</li>
 						<li><a href="MagazineSearch.jsp?search=<%= query %>">매거진</a></li>
@@ -120,32 +103,7 @@
 				</div>
 			
 			<hr class="hr">
-			<%
-				if(img.isEmpty() == false){//이미지가 없으면 프로필 출력x
-			%>	
-			<div id="profile">
-				<%= img %>
-				<span style="position: absolute;">
-					<ul type="none">
-						<li style="font-size: 20px;">${param.search}</li>
-					<% 
-						element = doc.select("div.info-zone");// 프로필
-						
-						for(Element el : element.select("li")){
-							String profile = el.toString();
-					%>
-						<li><%= profile %></li>
-					<% 
-						}
-					%>
-					</ul>
-				</span>
-			</div>
-			<hr class="hr" color="blue">
 			
-			<%
-				}
-			%>
 			곡 전체선택<input type="checkbox" id="selectAll">
 			<form action="" id="form">
 			<button type="submit"><img src="images/save.PNG"></button>
@@ -155,7 +113,7 @@
 					String title = null;
 					int cnt=0;
 					ArrayList list = new ArrayList();
-					element = doc.select("div.search_song");
+					Elements element = doc.select("div.search_song");
 					// 원하는 내용이 있는 틀(?) 입력
 					for(Element name : element.select("tr.list > td.info > a[title]")){ // 노래 이름
 						list.add(name.text());
@@ -166,7 +124,7 @@
 						title = (String)list.get(cnt);
 						cnt++;
 				%>
-				<tr id="song-list" >
+				<tr id="song-list">
 					<td width="60"><input type="checkbox"></td>
 					<td class="number" style="text-align: center;"><%= cnt %></td>
 					<td class="img" style="width: 65px;"><%= songimg %></td>
@@ -181,9 +139,7 @@
 				%>
 			</table>
 			</form>
-			
-			
-			
+				
 			</div>
 			
 			<div id = "hotsearch">
@@ -205,10 +161,13 @@
 				</ol>
 			</div>
 		</div>
+		
+		<div id="bottom">
+			
+		</div>
 		<!-- <div id = "under">
 			<a href = "">회사소개</a> | <a href ="">이용약관</a> | <a href="">개인정보처리방침</a> | <a href = "">청소년보호정책</a> | 이메일주소무단수집거부 | 서비스 이용문의
 		<div id = "under2">
 		</div> -->
-		
-</body>
+	</body>
 </html>

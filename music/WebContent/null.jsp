@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.jsoup.Jsoup"%>
 <%@page import="org.jsoup.nodes.Document"%>
@@ -9,7 +8,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<meta charset="UTF-8">
 		<title>음악을 태우다 낙타</title>
 		<link rel="stylesheet" type="text/css" href= "style.css">
@@ -20,8 +19,8 @@
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
 	</head>
-	<body>
-		
+<body>
+
 		<div id = "top">
 			<div id = "title">
 				<a href="main.jsp">메인으로 이동</a>
@@ -29,8 +28,9 @@
 			
 			<div id = "search">
 				<form action="지니.jsp">
-					<input type="text" id = "searchbox" style = "width: 400px; height: 45px;" placeholder="검색어를 입력해주세요." name="search">
-					<button type="submit" class="btn btn-primary btn-lg">검색</button>
+					<input type="text" id = "searchbox" style = "width: 400px; height: 45px;" placeholder="검색어를 입력해주세요."name="search" >
+					<button type="submit" class="btn btn-primary btn-lg" return false;>검색</button>
+					
 				</form>
 			</div>
 			
@@ -63,39 +63,52 @@
 		<hr class = "hr">
 		<div id = "middle">
 			<div id = "album">
-				
-		<hr>
+			
+			
+			<table border="4" style="width: 700px; height: 200px;"><!-- 검색 결과가 없을때 쓰는 jsp forwerd 사용했어요 -->
+				<tr>
+					<td style="text-align: center;">
+						<span style=" font-size: 20px; color: blue;">"${param.search}"</span>
+						<span style="font-size: 20px;">에 대한 검색 결과가 없습니다.</span>
+					</td>
+				</tr>
+			</table>
 		
-				
-				<%
-					String query = request.getParameter("search");
-					String url = "https://www.genie.co.kr/magazine/subMain?ctid=1&mgz_seq="+query+"&pg=1";
-					
-					Document doc = null;
-					int cnt=0;
-					try {
-						doc = Jsoup.connect(url).get();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					Elements element = doc.select("div#body-content");
-					Elements title = element.select("div.title > span.txt.ellipsis");
-					Elements img = element.select("div.main-visual > div.cover > img");//메인 이미지
-				%>
-			 		<p style="font-size: 20px; font-style: italic; text-align: center;"><%= title.text() %></p>
-			 		<%= img.toString() %>
-		
-				
+			
+			
+			
 			</div>
 			
+			<div id = "hotsearch">
+				<h5>인기 검색어</h5>
+				<br>
+				<ol>
+					<% 
+						String rank = null;
+						String url = "https://www.genie.co.kr/search/searchMain?query=";
+						Document doc = null;
+						try {
+							doc = Jsoup.connect(url).get();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						Elements element = doc.select("div.aside_realtime");//인기 검색어
+						
+						for(Element el : element.select("li > a")){
+							rank = el.text();
+							
+					%>
+						<li><a href="지니.jsp?search=<%= rank %>"><%= rank %></a></li>
+					<% 
+						}
+					%>
+				</ol>
+			</div>
 		</div>
-		
-		<div id="bottom">
-			
-		</div>
-		<!-- <div id = "under">
+		<div id = "under">
 			<a href = "">회사소개</a> | <a href ="">이용약관</a> | <a href="">개인정보처리방침</a> | <a href = "">청소년보호정책</a> | 이메일주소무단수집거부 | 서비스 이용문의
 		<div id = "under2">
-		</div>  -->
-	</body>
+		</div>
+		
+</body>
 </html>

@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.jsoup.Jsoup"%>
 <%@page import="org.jsoup.nodes.Document"%>
@@ -21,6 +20,21 @@
 		crossorigin="anonymous"></script>
 	</head>
 	<body>
+		
+		<%
+			String query = request.getParameter("search");
+			String url = "https://www.genie.co.kr/magazine?ctid=1";
+			Document doc = null;
+			String title=null;
+			ArrayList list = new ArrayList();
+			int cnt=0;
+			try {
+				doc = Jsoup.connect(url).get();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Elements element = doc.select("div.list-normal");
+		%>
 		
 		<div id = "top">
 			<div id = "title">
@@ -63,28 +77,35 @@
 		<hr class = "hr">
 		<div id = "middle">
 			<div id = "album">
-				
-		<hr>
+				<div id="current">
+					<ul>
+						<li><a href="지니.jsp?search=<%= query %>">통합검색</a></li>
+						<li><a href="SongSearch.jsp?search=<%= query %>">곡</a></li>
+						<li><a href="AlbumSearch.jsp?search=<%= query %>">앨범</a></li>
+						<li>동영상</li>
+						<li><a href="#">매거진</a></li>
+					</ul>
+				</div>
+		<hr class="hr" color="blue">
 		
-				
+				<table border="2" style="width: 700px;">
 				<%
-					String query = request.getParameter("search");
-					String url = "https://www.genie.co.kr/magazine/subMain?ctid=1&mgz_seq="+query+"&pg=1";
-					
-					Document doc = null;
-					int cnt=0;
-					try {
-						doc = Jsoup.connect(url).get();
-					} catch (IOException e) {
-						e.printStackTrace();
+					for(Element p : element.select("div.info > p")){ //타이틀
+						list.add(p.text());
 					}
-					Elements element = doc.select("div#body-content");
-					Elements title = element.select("div.title > span.txt.ellipsis");
-					Elements img = element.select("div.main-visual > div.cover > img");//메인 이미지
+					for(Element img : element.select("div.cover > img")){//뉴스 이미지
+						title = (String)list.get(cnt);
 				%>
-			 		<p style="font-size: 20px; font-style: italic; text-align: center;"><%= title.text() %></p>
-			 		<%= img.toString() %>
-		
+			 		<tr>
+			 			<td class="newspage"><%= img %></td>
+			 			<td><%= title %></td>
+			 		</tr>
+				<%			
+						cnt++;
+					}
+				%>
+					
+				</table>
 				
 			</div>
 			
@@ -93,7 +114,7 @@
 		<div id="bottom">
 			
 		</div>
-		<!-- <div id = "under">
+		<!-- <div id = "under"  style="margin-bottom:0px;">
 			<a href = "">회사소개</a> | <a href ="">이용약관</a> | <a href="">개인정보처리방침</a> | <a href = "">청소년보호정책</a> | 이메일주소무단수집거부 | 서비스 이용문의
 		<div id = "under2">
 		</div>  -->

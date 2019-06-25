@@ -149,8 +149,26 @@
 	
 }
 
+
 input[type=checkbox]{
   width: 20px;
   height: 20px;
   margin-left: 15px;
+}
+.img>img{
+	width: 60px;
+	height: 60px;
+}
+.albumpage>img{
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
+.newspage>img{
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+}
+#even-number{
+	left: 450px;
 }
