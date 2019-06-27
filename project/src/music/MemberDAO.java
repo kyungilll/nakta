@@ -80,7 +80,9 @@ public class MemberDAO {
 	}
 
 	public String idCheck(String InputId) {
+		System.out.println("DAO 입력된 id : " + InputId);
 		String id = null;
+		mgr = DBConnectionMgr.getInstance();
 		try {
 			con = mgr.getConnection();
 			String sql = "select * from member where id=?";
@@ -88,13 +90,11 @@ public class MemberDAO {
 			ps.setString(1, InputId);
 			rs = ps.executeQuery();
 
-			if(rs.next()) {
-				id = rs.getString("id");
-			}else{
+			if (rs.next()) {
+				id = rs.getString(1);
+			} else {
 				id = null;
 			}
-			System.out.println(id);
-			System.out.println(InputId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
