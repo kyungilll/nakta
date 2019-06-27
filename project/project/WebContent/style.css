@@ -1,0 +1,690 @@
+@charset "UTF-8";
+
+#top {
+	margin-top: 50px;
+	width: 900px;
+	height: 100px;
+}
+
+#title {
+	position: absolute;
+	left: 475px;
+	width: 200px;
+	height: 100px;
+	background-image: url(image/Title.png);
+}
+
+#search {
+	position: absolute;
+	left: 675px;
+	width: 500px;
+	height: 100px;
+}
+
+#searchbox {
+	margin-top: 40px;
+	margin-left: 20px;
+	padding-bottom: 5px;
+	border: 1px solid black;
+}
+
+#login {
+	position: absolute;
+	left: 1175px;
+	width: 200px;
+	height: 100px;
+}
+
+#loginbutton {
+	margin-top: 40px;
+}
+
+#menu {
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 70px;
+}
+
+#menu li {
+	list-style: none;
+	float: left;
+	width: 150px;
+	height: 50px;
+	font-weight: bold;
+	color: black;
+	padding-top: 30px;
+}
+
+.hr {
+	margin-top: 70px;
+}
+
+#middle {
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 400px;
+}
+
+#album {
+	position: absolute;
+	width: 700px;
+	height: 400px;
+	float: left;
+}
+
+#table {
+	margin-top: 25px;
+}
+
+#hotsearch {
+	position: absolute;
+	left: 700px;
+	width: 175px;
+	height: 350px;
+	border: 1px solid black;
+	border-radius: 10px 10px 10px 10px;
+	margin-left: 25px;
+	margin-top: 25px;
+}
+
+#bottom {
+	margin-top: 350px;
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 300px;
+	border: 10px;
+}
+
+#chart {
+	/* 정경일 추가 */
+	text-overflow: ellipsis;
+	position: absolute;
+	left: 730px;
+	width: 450px;
+	height: 300px;
+}
+
+#container {
+	position: absolute;
+	left: 450px;
+	width: 450px;
+	height: 400px;
+}
+
+#notice {
+	padding-left: 20px;
+	position: absolute;
+	width: 450px;
+	height: 150px;
+}
+
+#news {
+	padding-left: 20px;
+	position: absolute;
+	margin-top: 150px;
+	width: 450px;
+	height: 150px;
+	left: 500px;
+	font: 10px black;
+}
+
+#news1 li {
+	font-size: 15px;
+}
+
+#under {
+	margin-top: 820px;
+	position: absolute;
+	left: 475px;
+	width: 900px;
+	height: 38px;
+	font-size: 12px;
+}
+
+#under2 {
+	width: 900px;
+	height: 162px;
+	background-image: url("images/under.png");
+}
+
+#current {
+	position: absolute;
+	width: 900px;
+	height: 70px;
+}
+
+#current li {
+	list-style: none;
+	float: left;
+	width: 90px;
+	height: 40px;
+	font-weight: bold;
+	color: black;
+	padding-top: 5px;
+}
+
+#profile {
+	margin-top: 30px;
+	width: 500px;
+	height: 170px;
+}
+
+input[type=checkbox] {
+	width: 20px;
+	height: 20px;
+	margin-left: 15px;
+}
+
+.simg>img {
+	width: 60px;
+	height: 60px;
+}
+
+.albumpage>img {
+	width: 150px;
+	height: 150px;
+	margin: 10px;
+}
+
+.newspage>img {
+	width: 200px;
+	height: 200px;
+	margin: 10px;
+}
+
+/* ----------------------------------------- 추가한 내용--------------------- */
+#list {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#word-break {
+	word-wrap: break-word;
+	font-weight: bold;
+}
+
+body {
+	background: #333333;
+}
+
+@
+keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+-moz-keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+-webkit-keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+-o-keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+-moz-keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+-webkit-keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+-o-keyframes rotate-loading { 0% {
+	transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+}
+
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);-ms-transform
+:
+ 
+rotate
+(360deg);
+ 
+-webkit-transform
+:
+ 
+rotate
+(360deg);
+ 
+-o-transform
+:
+ 
+rotate
+(360deg);
+ 
+-moz-transform
+:
+ 
+rotate
+(360deg);
+}
+}
+@
+keyframes loading-text-opacity { 0% {
+	opacity: 0
+}
+
+20%
+{
+opacity
+:
+ 
+0
+}
+50%
+{
+opacity
+:
+ 
+1
+}
+100%{
+opacity
+:
+ 
+0
+}
+}
+@
+-moz-keyframes loading-text-opacity { 0% {
+	opacity: 0
+}
+
+20%
+{
+opacity
+:
+ 
+0
+}
+50%
+{
+opacity
+:
+ 
+1
+}
+100%{
+opacity
+:
+ 
+0
+}
+}
+@
+-webkit-keyframes loading-text-opacity { 0% {
+	opacity: 0
+}
+
+20%
+{
+opacity
+:
+ 
+0
+}
+50%
+{
+opacity
+:
+ 
+1
+}
+100%{
+opacity
+:
+ 
+0
+}
+}
+@
+-o-keyframes loading-text-opacity { 0% {
+	opacity: 0
+}
+
+20%
+{
+opacity
+:
+ 
+0
+}
+50%
+{
+opacity
+:
+ 
+1
+}
+100%{
+opacity
+:
+ 
+0
+}
+}
+.loading-container, .loading {
+	height: 100px;
+	position: relative;
+	width: 100px;
+	border-radius: 100%;
+}
+
+.loading-container {
+	margin: 40px auto
+}
+
+.loading {
+	border: 2px solid transparent;
+	border-color: transparent #fff transparent #FFF;
+	-moz-animation: rotate-loading 1.5s linear 0s infinite normal;
+	-moz-transform-origin: 50% 50%;
+	-o-animation: rotate-loading 1.5s linear 0s infinite normal;
+	-o-transform-origin: 50% 50%;
+	-webkit-animation: rotate-loading 1.5s linear 0s infinite normal;
+	-webkit-transform-origin: 50% 50%;
+	animation: rotate-loading 1.5s linear 0s infinite normal;
+	transform-origin: 50% 50%;
+}
+
+.loading-container:hover .loading {
+	border-color: transparent #E45635 transparent #E45635;
+}
+
+.loading-container:hover .loading, .loading-container .loading {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+#loading-text {
+	-moz-animation: loading-text-opacity 2s linear 0s infinite normal;
+	-o-animation: loading-text-opacity 2s linear 0s infinite normal;
+	-webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
+	animation: loading-text-opacity 2s linear 0s infinite normal;
+	color: #ffffff;
+	font-family: "Helvetica Neue, " Helvetica ", " "arial";
+	font-size: 10px;
+	font-weight: bold;
+	margin-top: 45px;
+	opacity: 0;
+	position: absolute;
+	text-align: center;
+	text-transform: uppercase;
+	top: 0;
+	width: 100px;
+}
